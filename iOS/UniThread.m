@@ -13,9 +13,10 @@ void SetIOSThreadPriority(const char * threadName, int priority) {
         if (pt) {
             ptName[0] = '\0';
             int rc = pthread_getname_np(pt, ptName, sizeof ptName);
+            NSLog(@"mach thread %u: getname returned %d: %s", list[i], rc, ptName);
             NSString *ptNSName = [[NSString alloc] initWithUTF8String:ptName];
             if ([ptNSName containsString:NSThreadName]) {
-                NSLog(@"Set priority on Thread %s %d", NSThreadName, priority);
+                NSLog(@"Set priority on Thread %@ %d", NSThreadName, priority);
                 int policy;
                 struct sched_param param;
                 memset(&param, 0, sizeof(struct sched_param));
@@ -26,6 +27,7 @@ void SetIOSThreadPriority(const char * threadName, int priority) {
                     param.sched_priority = sched_get_priority_min(policy);
                 }
                 int error = pthread_setschedparam(pt, SCHED_RR, &param);
+                NSLog(@"PThread Error return: %d", error);
             }
         } else {
             NSLog(@"mach thread %u: no pthread found", list[i]);
