@@ -14,12 +14,12 @@ This is a higher level abstraction which will use System.Threading when it can, 
 
 Also utilized is a C method which will change the priority of a thread through low level Posix Thread functionality on iOS. This will be used automatically on iOS to get around the issue of Thread.Priority not working on IL2CPP.
 
-Usage is as follows:
+Threads are created through this method:
 ```
-EC.UniThread.LoopThread.Create(MethodDelegate, UniThreadPriority, CycleTimeMS);
+EC.UniThread.LoopThread.Create(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS);
 ```
 
-All my current usages of threading in Unity rely creating game loops on an alternate thread. So thus far this library only contains LoopThread. Which will internally call a passed MethodDelegate on repeat, constrained to CycleTimeMS which is an int in Milliseconds.
+All my current usages of threading in Unity rely creating game loops on an alternate thread. So thus far this library only contains LoopThread. Which will internally call a passed Action method on repeat, constrained to cycleTimeMS, which can be left out if you do not what time constraining. A string threadName must be provided so that the thread can be found through Posix methods on iOS.
 
 Also implemented is a Wait() method with platform idiosyncratic implementation to pause a thread, as Thread.Sleep does not work on Windows Store Apps.
 
@@ -28,7 +28,7 @@ Usage is as follows:
 LoopThread _thread;
 
 void Start() {
-  _thread = LoopThread.Create(RunMethod, UniThreadPriority.Normal);
+  _thread = LoopThread.Create(RunMethod, "MyThread", UniThreadPriority.Normal);
 }
 
 void RunMethod() {
@@ -49,7 +49,5 @@ So from the root of your project execute the following command.
 
 - UniThread abstraction which does not assume the thread will be looping.
 - Functionality to call code from a Threaded method on MainThread.
-
-Please do consider forking my repo, and adding to it any solutions to Unity idiosyncratic System.Threading issues then submit a pull request. Such a common, base level functionality I do not believe belongs on the Asset Store with a price.
 
 License under the MIT License

@@ -8,12 +8,14 @@ public abstract class LoopThread {
 
 	public int CycleTimeMS { get; set; }
 	protected bool RunThread { get; set; }
+	protected readonly string ThreadName;
 	protected readonly Action Method;
 	protected readonly UniThreadPriority Priority;
 
-	public LoopThread(Action method, UniThreadPriority priority, int cycleTimeMS) {
+	public LoopThread(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS) {
 		RunThread = true;
 		Method = method;
+		ThreadName = threadName;
 		Priority = priority;
 		CycleTimeMS = cycleTimeMS;
 	}
@@ -45,13 +47,13 @@ public abstract class LoopThread {
 	/// </summary>
 	/// <param name="cycleTimeMS">Cycle time in Milliseconds.</param>
 	/// <param name="debugCoroutineThread">Optional flag to run thread through coroutine for debuggin purposes.</param>
-	static public LoopThread Create(Action method, UniThreadPriority priority, int cycleTimeMS = 0, bool debugCoroutineThread = false) {
+	static public LoopThread Create(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS = 0, bool debugCoroutineThread = false) {
 		if (debugCoroutineThread)
 			return new CoroutineLoopThread(method);
 #if UNITY_WSA_10_0 && !UNITY_EDITOR
-		return new UW10UniThread(method, priority, cycleTimeMS);
+		return new UW10UniThread(method, threadName, priority, cycleTimeMS);
 #else
-		return new StandardLoopThread(method, priority, cycleTimeMS);
+		return new StandardLoopThread(method, threadName, priority, cycleTimeMS);
 #endif
 	}
 }

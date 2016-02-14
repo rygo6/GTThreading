@@ -12,8 +12,8 @@ public sealed class UW10LoopThread : LoopThread {
     System.Threading.ManualResetEvent _wait = new System.Threading.ManualResetEvent(false);
 #endif
 
-	public UW10LoopThread(Action method, UniThreadPriority priority, int cycleTimeMS = 0) :
-		base(method, priority, cycleTimeMS) {
+	public UW10LoopThread(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS = 0) :
+		base(method, threadName, priority, cycleTimeMS) {
 	}
 
 	public override void Start() {

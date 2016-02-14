@@ -8,7 +8,7 @@ public sealed class CoroutineLoopThread : LoopThread {
 	MonoBehaviour _monoBehaviour;
 
 	public CoroutineLoopThread(Action method) :
-		base(method, UniThreadPriority.Low, 0) {
+		base(method, "", UniThreadPriority.Low, 0) {
 	}
 
 	public override void Start() {
