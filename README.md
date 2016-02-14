@@ -50,6 +50,6 @@ So from the root of your project execute the following command.
 - UniThread abstraction which does not assume the thread will be looping.
 - Functionality to call code from a Threaded method on MainThread.
 
-Please do consider forking my repo, and adding to it any solutions to Unity idiosyncratic System.Threading issues then submitting a pull request. Such a common, base level functionality I do not believe belongs on the Asset Store with a price.
+Please do consider forking my repo, and adding to it any solutions to Unity idiosyncratic System.Threading issues then submit a pull request. Such a common, base level functionality I do not believe belongs on the Asset Store with a price.
 
 License under the MIT License
