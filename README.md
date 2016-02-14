@@ -12,7 +12,7 @@ Thus, UniThread.
 
 This is a higher level abstraction which will use System.Threading when it can, and the System.Threading.ThreadPool for Windows Store apps to replicate similar functionality to System.threading.
 
-Also utilized is a C method which will change the priority of a thread through low level Posix Thread functionality on iOS. This will be used automatically on iOS rather to get around the issue of Thread.Priority not working on IL2CPP.
+Also utilized is a C method which will change the priority of a thread through low level Posix Thread functionality on iOS. This will be used automatically on iOS to get around the issue of Thread.Priority not working on IL2CPP.
 
 Usage is as follows:
 ```
@@ -37,7 +37,15 @@ void RunMethod() {
 }
 ```
 
-# Potentially Useful Future Features
+## Installation
+
+The structure of this repo is set up to allow you to add it as a submodule directly into your Unity project repo. It should go in Assets/Plugins/UniThread
+
+So from the root of your project execute the following command.
+
+    git submodule add git@github.com:rygo6/UniThread.git Assets/Plugins/UniThread
+
+## Potentially Useful Future Features
 
 - UniThread abstraction which does not assume the thread will be looping.
 - Functionality to call code from a Threaded method on MainThread.
