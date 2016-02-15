@@ -50,4 +50,4 @@ So from the root of your project execute the following command.
 - Functionality to call code from a Threaded method on MainThread.
 - Make low level Posix Thread C function work for Android.
 
-License under the MIT License
+Licensed under the MIT License
