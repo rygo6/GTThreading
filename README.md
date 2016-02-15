@@ -4,13 +4,12 @@ UniThread
 Currently Unity possesses these issues:
 - Thread.Priority does not work on IL2CPP.
 - Threading.Thread is entirely missing when you try and build Universal Windows 10 Store apps.
-- The way you cancel threads can also have issues depending on platforms.
 
 Due to this, when building an app targeting Android, iOS and Windows Store you actually cannot rely on System.Threading, it simply will not work for all platforms.
 
 Thus, UniThread.
 
-This is a higher level abstraction which will use System.Threading when it can, and the System.Threading.ThreadPool for Windows Store apps to replicate similar functionality to System.threading.
+This is a higher level abstraction which will use System.Threading when it can, and the System.Threading.ThreadPool for Windows Store apps to replicate similar functionality to System.Threading.Thread.
 
 Also utilized is a C method which will change the priority of a thread through low level Posix Thread functionality on iOS. This will be used automatically on iOS to get around the issue of Thread.Priority not working on IL2CPP.
 
