@@ -48,5 +48,6 @@ So from the root of your project execute the following command.
 
 - UniThread abstraction which does not assume the thread will be looping.
 - Functionality to call code from a Threaded method on MainThread.
+- Make low level Posix Thread C function work for Android.
 
 License under the MIT License
