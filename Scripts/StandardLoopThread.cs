@@ -34,8 +34,10 @@ public sealed class StandardLoopThread : LoopThread {
 
 	public override void Stop() {
 		RunThread = false;
+#if !UNITY_WSA_10_0
 		while (_thread.IsAlive) {
 		}
+#endif
 	}
 
 	public override void Wait(int ms) {
