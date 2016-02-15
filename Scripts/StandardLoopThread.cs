@@ -8,13 +8,16 @@ using System.Runtime.InteropServices;
 namespace EC.UniThread {
 public sealed class StandardLoopThread : LoopThread {
 
+#if !UNITY_WSA_10_0
 	Thread _thread;
+#endif
 
 	public StandardLoopThread(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS = 0) :
 		base(method, threadName, priority, cycleTimeMS) {
 	}
 
 	public override void Start() {
+#if !UNITY_WSA_10_0
 		_thread = new Thread(RunThreadLoop);
 		UnityEngine.Debug.Log(Method.ToString());
 		_thread.Name = ThreadName;
@@ -23,6 +26,7 @@ public sealed class StandardLoopThread : LoopThread {
 		else if (Priority == UniThreadPriority.High)
 			_thread.Priority = System.Threading.ThreadPriority.Highest;
 		_thread.Start();
+#endif
 #if UNITY_IOS && !UNITY_EDITOR
 		SetIOSThreadPriority(_thread.Name, (int)Priority);
 #endif
@@ -35,7 +39,9 @@ public sealed class StandardLoopThread : LoopThread {
 	}
 
 	public override void Wait(int ms) {
+#if !UNITY_WSA_10_0
 		Thread.Sleep(ms);
+#endif
 	}
 
 #if UNITY_IOS && !UNITY_EDITOR
