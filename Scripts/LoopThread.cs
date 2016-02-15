@@ -51,7 +51,7 @@ public abstract class LoopThread {
 		if (debugCoroutineThread)
 			return new CoroutineLoopThread(method);
 #if UNITY_WSA_10_0 && !UNITY_EDITOR
-		return new UW10UniThread(method, threadName, priority, cycleTimeMS);
+		return new UW10LoopThread(method, threadName, priority, cycleTimeMS);
 #else
 		return new StandardLoopThread(method, threadName, priority, cycleTimeMS);
 #endif
