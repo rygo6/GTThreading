@@ -14,12 +14,12 @@ public sealed class StandardLoopThread : LoopThread {
 
 	public StandardLoopThread(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS = 0) :
 		base(method, threadName, priority, cycleTimeMS) {
+		UnityEngine.Debug.Log("StandardLoopThread Created " + method.ToString() + " " + threadName + " " + priority + " " + cycleTimeMS);
 	}
 
 	public override void Start() {
 #if !UNITY_WSA_10_0
 		_thread = new Thread(RunThreadLoop);
-		UnityEngine.Debug.Log(Method.ToString());
 		_thread.Name = ThreadName;
 		if (Priority == UniThreadPriority.Low) 
 			_thread.Priority = System.Threading.ThreadPriority.Lowest;

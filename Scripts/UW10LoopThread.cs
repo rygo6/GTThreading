@@ -14,6 +14,7 @@ public sealed class UW10LoopThread : LoopThread {
 
 	public UW10LoopThread(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS = 0) :
 		base(method, threadName, priority, cycleTimeMS) {
+		UnityEngine.Debug.Log("UW10LoopThread Created " + method.ToString() + " " + threadName + " " + priority + " " + cycleTimeMS);
 	}
 
 	public override void Start() {

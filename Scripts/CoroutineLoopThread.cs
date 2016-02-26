@@ -9,6 +9,7 @@ public sealed class CoroutineLoopThread : LoopThread {
 
 	public CoroutineLoopThread(Action method) :
 		base(method, "", UniThreadPriority.Low, 0) {
+		UnityEngine.Debug.Log("CoroutineLoopThread Created " + method.ToString());
 	}
 
 	public override void Start() {
