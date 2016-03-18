@@ -2,13 +2,13 @@
 using System;
 using System.Collections;
 
-namespace EC.UniThread {
+namespace EC.Threading {
 public sealed class CoroutineLoopThread : LoopThread {
 
 	MonoBehaviour _monoBehaviour;
 
 	public CoroutineLoopThread(Action method) :
-		base(method, "", UniThreadPriority.Low, 0) {
+		base(method, "", Priority.Low, 0) {
 		UnityEngine.Debug.Log("CoroutineLoopThread Created " + method.ToString());
 	}
 

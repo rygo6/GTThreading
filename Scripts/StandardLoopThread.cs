@@ -5,14 +5,14 @@ using System.Threading;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace EC.UniThread {
+namespace EC.Threading {
 public sealed class StandardLoopThread : LoopThread {
 
 #if !UNITY_WSA_10_0
 	Thread _thread;
 #endif
 
-	public StandardLoopThread(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS = 0) :
+	public StandardLoopThread(Action method, string threadName, Priority priority, int cycleTimeMS = 0) :
 		base(method, threadName, priority, cycleTimeMS) {
 		UnityEngine.Debug.Log("StandardLoopThread Created " + method.ToString() + " " + threadName + " " + priority + " " + cycleTimeMS);
 	}
@@ -21,9 +21,9 @@ public sealed class StandardLoopThread : LoopThread {
 #if !UNITY_WSA_10_0
 		_thread = new Thread(RunThreadLoop);
 		_thread.Name = ThreadName;
-		if (Priority == UniThreadPriority.Low) 
+		if (Priority == Priority.Low) 
 			_thread.Priority = System.Threading.ThreadPriority.Lowest;
-		else if (Priority == UniThreadPriority.High)
+		else if (Priority == Priority.High)
 			_thread.Priority = System.Threading.ThreadPriority.Highest;
 		_thread.Start();
 #endif

@@ -3,16 +3,16 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 
-namespace EC.UniThread {
+namespace EC.Threading {
 public abstract class LoopThread {
-
+		
 	public int CycleTimeMS { get; set; }
 	protected bool RunThread { get; set; }
 	protected readonly string ThreadName;
 	protected readonly Action Method;
-	protected readonly UniThreadPriority Priority;
+	protected readonly Priority Priority;
 
-	public LoopThread(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS) {
+	public LoopThread(Action method, string threadName, Priority priority, int cycleTimeMS) {
 		RunThread = true;
 		Method = method;
 		ThreadName = threadName;
@@ -47,7 +47,7 @@ public abstract class LoopThread {
 	/// </summary>
 	/// <param name="cycleTimeMS">Cycle time in Milliseconds.</param>
 	/// <param name="debugCoroutineThread">Optional flag to run thread through coroutine for debuggin purposes.</param>
-	static public LoopThread Create(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS = 0, bool debugCoroutineThread = false) {
+	static public LoopThread Create(Action method, string threadName, Priority priority, int cycleTimeMS = 0, bool debugCoroutineThread = false) {
 		if (debugCoroutineThread)
 			return new CoroutineLoopThread(method);
 #if UNITY_WSA_10_0 && !UNITY_EDITOR

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Threading;
 using System.Diagnostics;
 
-namespace EC.UniThread {
+namespace EC.Threading {
 public sealed class UW10LoopThread : LoopThread {
 
 	#if UNITY_WSA_10_0 && !UNITY_EDITOR
@@ -12,7 +12,7 @@ public sealed class UW10LoopThread : LoopThread {
     System.Threading.ManualResetEvent _wait = new System.Threading.ManualResetEvent(false);
 #endif
 
-	public UW10LoopThread(Action method, string threadName, UniThreadPriority priority, int cycleTimeMS = 0) :
+	public UW10LoopThread(Action method, string threadName, Priority priority, int cycleTimeMS = 0) :
 		base(method, threadName, priority, cycleTimeMS) {
 		UnityEngine.Debug.Log("UW10LoopThread Created " + method.ToString() + " " + threadName + " " + priority + " " + cycleTimeMS);
 	}
