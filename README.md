@@ -1,4 +1,4 @@
-ECThreading
+GTThreading
 =========
 
 Currently Unity possesses these issues:
@@ -7,7 +7,7 @@ Currently Unity possesses these issues:
 
 Due to this, when building an app targeting Android, iOS and Windows Store you actually cannot rely on System.Threading, it simply will not work for all platforms.
 
-Thus, ECThreading
+Thus, GTThreading
 
 This is a higher level abstraction which will use System.Threading when it can, and the System.Threading.ThreadPool for Windows Store apps to replicate similar functionality to System.Threading.Thread.
 
@@ -15,7 +15,7 @@ Also utilized is a C method which will change the priority of a thread through l
 
 Threads are created through this method:
 ```
-EC.Threading.LoopThread.Create(Action method, string threadName, Priority priority, int cycleTimeMS);
+GT.Threading.LoopThread.Create(Action method, string threadName, Priority priority, int cycleTimeMS);
 ```
 
 All my current usages of threading in Unity rely creating game loops on an alternate thread. So thus far this library only contains LoopThread. Which will internally call a passed Action method on repeat, constrained to cycleTimeMS, which can be left out if you do not what time constraining. A string threadName must be provided so that the thread can be found through Posix methods on iOS.
@@ -42,12 +42,10 @@ The structure of this repo is set up to allow you to add it as a submodule direc
 
 So from the root of your project execute the following command.
 
-    git submodule add git@github.com:rygo6/ECThreading.git Assets/Plugins/ECThreading
+    git submodule add git@github.com:rygo6/GTThreading.git Assets/Plugins/GTThreading
 
 ## Potentially Useful Future Features
 
-- ECThreading abstraction which does not assume the thread will be looping.
+- GTThreading abstraction which does not assume the thread will be looping.
 - Functionality to call code from a Threaded method on MainThread.
 - Make low level Posix thread priority C function work for Android.
-
-Licensed under the MIT License
