@@ -4,7 +4,7 @@ using System.Collections;
 using System.Threading;
 using System.Diagnostics;
 
-namespace EC.Threading {
+namespace GT.Threading {
 public sealed class UW10LoopThread : LoopThread {
 
 	#if UNITY_WSA_10_0 && !UNITY_EDITOR

@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-namespace EC.Threading {
+namespace GT.Threading {
 public sealed class CoroutineLoopThread : LoopThread {
 
 	MonoBehaviour _monoBehaviour;

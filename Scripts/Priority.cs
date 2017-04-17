@@ -1,4 +1,4 @@
-﻿namespace EC.Threading {
+﻿namespace GT.Threading {
 public enum Priority {
 	Normal = 0,
 	Low = 1,

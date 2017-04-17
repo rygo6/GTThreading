@@ -5,7 +5,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace EC.Threading {
+namespace GT.Threading {
 public sealed class StandardLoopThread : LoopThread {
 
 #if !UNITY_WSA_10_0

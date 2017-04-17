@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 
-namespace EC.Threading {
+namespace GT.Threading {
 public abstract class LoopThread {
 		
 	public int CycleTimeMS { get; set; }
