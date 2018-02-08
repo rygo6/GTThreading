@@ -18,7 +18,7 @@ Threads are created through this method:
 GT.Threading.LoopThread.Create(Action method, string threadName, Priority priority, int cycleTimeMS);
 ```
 
-All my current usages of threading in Unity rely creating game loops on an alternate thread. So thus far this library only contains LoopThread. Which will internally call a passed Action method on repeat, constrained to cycleTimeMS, which can be left out if you do not what time constraining. A string threadName must be provided so that the thread can be found through Posix methods on iOS.
+All my current usages of threading in Unity rely creating game loops on an alternate thread. So thus far this library only contains LoopThread. Which will internally call a passed Action method on repeat, constrained to cycleTimeMS, which can be left out if you do not want time constraining. A string threadName must be provided so that the thread can be found through Posix methods on iOS.
 
 Also implemented is a Wait() method with platform idiosyncratic implementation to pause a thread, as Thread.Sleep does not work on Windows Store Apps.
 
