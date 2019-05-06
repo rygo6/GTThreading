@@ -20,13 +20,13 @@ public sealed class UW10LoopThread : LoopThread {
 	public override void Start() {
 #if UNITY_WSA_10_0 && !UNITY_EDITOR
 		switch (Priority) {
-		case UniThreadPriority.Normal:
+		case Priority.Normal:
 			_async = Windows.System.Threading.ThreadPool.RunAsync((workItem) => { RunThreadLoop(); });
 			break;
-		case UniThreadPriority.Low:
+		case Priority.Low:
 			_async = Windows.System.Threading.ThreadPool.RunAsync((workItem) => { RunThreadLoop(); }, Windows.System.Threading.WorkItemPriority.Low);
 			break;
-		case UniThreadPriority.High:
+		case Priority.High:
 			_async = Windows.System.Threading.ThreadPool.RunAsync((workItem) => { RunThreadLoop(); }, Windows.System.Threading.WorkItemPriority.High);
 			break;
 		}
